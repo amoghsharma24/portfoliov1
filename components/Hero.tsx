@@ -1,6 +1,5 @@
-
-import React from 'react';
-import CodeSnippet from './CodeSnippet';
+import React from "react";
+import CodeSnippet from "./CodeSnippet";
 
 const Hero: React.FC = () => {
   return (

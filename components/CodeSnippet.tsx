@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { SKILLS } from "../constants";
 
@@ -21,9 +21,28 @@ const BlinkingCursor: React.FC = () => (
   />
 );
 
+const easterEggs: Record<string, string | React.ReactNode> = {
+  "sudo hireme": (
+    <span className="text-green-400">
+      Permission granted! 🚀
+      <br />
+      Email sent to amoghsharma!
+    </span>
+  ),
+  "cat motivation.txt": (
+    <span>"Keep pushing forward, even when no one is watching." 💡</span>
+  ),
+};
+
 const CodeSnippet: React.FC = () => {
   const [lines, setLines] = useState<React.ReactNode[]>([]);
+  const [history, setHistory] = useState<
+    { cmd: string; output: React.ReactNode }[]
+  >([]);
+  const [input, setInput] = useState("");
+  const [showPrompt, setShowPrompt] = useState(false);
   const controls = useAnimation();
+  const inputRef = useRef<HTMLInputElement>(null);
   const skillsText =
     "TypeScript  React  Next.js  Tailwind  Framer Motion  UI/UX";
 
@@ -44,7 +63,7 @@ const CodeSnippet: React.FC = () => {
             <BlinkingCursor />
           </div>,
         ]);
-        await sleep(120); // smoother, slower typing
+        await sleep(120);
       }
 
       await sleep(600);
@@ -89,7 +108,7 @@ const CodeSnippet: React.FC = () => {
             <BlinkingCursor />
           </div>,
         ]);
-        await sleep(90); // smoother typing
+        await sleep(90);
       }
 
       await sleep(600);
@@ -112,13 +131,9 @@ const CodeSnippet: React.FC = () => {
       setLines(line2);
 
       await sleep(1200);
-      setLines([
-        ...line2,
-        <div key="idle">
-          <Prompt />
-          <BlinkingCursor />
-        </div>,
-      ]);
+      setLines([]);
+      setShowPrompt(true);
+      setTimeout(() => inputRef.current?.focus(), 100);
     };
 
     runAnimation();
@@ -127,6 +142,120 @@ const CodeSnippet: React.FC = () => {
     };
   }, [skillsText]);
 
+  // Command handler
+  const handleCommand = (cmd: string) => {
+    const trimmed = cmd.trim();
+    if (!trimmed) return;
+    // Easter eggs
+    if (easterEggs[trimmed]) {
+      setHistory((h) => [...h, { cmd: trimmed, output: easterEggs[trimmed] }]);
+      return;
+    }
+    // Basic terminal commands
+    if (trimmed === "clear") {
+      setHistory([]);
+      return;
+    }
+    if (trimmed === "help") {
+      setHistory((h) => [
+        ...h,
+        {
+          cmd: trimmed,
+          output: (
+            <span>
+              Available commands: <br />
+              <span className="text-neutral-300">
+                projects, contact, blog, sudo hireme, cat motivation.txt, clear,
+                help, ls, whoami, pwd
+              </span>
+            </span>
+          ),
+        },
+      ]);
+      return;
+    }
+    if (trimmed === "ls") {
+      setHistory((h) => [
+        ...h,
+        {
+          cmd: trimmed,
+          output: <span>about.txt projects blog contact skills</span>,
+        },
+      ]);
+      return;
+    }
+    if (trimmed === "whoami") {
+      setHistory((h) => [
+        ...h,
+        { cmd: trimmed, output: <span>amoghsharma</span> },
+      ]);
+      return;
+    }
+    if (trimmed === "pwd") {
+      setHistory((h) => [
+        ...h,
+        { cmd: trimmed, output: <span>/home/amogh/portfolio</span> },
+      ]);
+      return;
+    }
+    // Navigation commands
+    if (["projects", "project"].includes(trimmed)) {
+      setHistory((h) => [
+        ...h,
+        { cmd: trimmed, output: <span>Opening projects section...</span> },
+      ]);
+      setTimeout(() => {
+        document
+          .getElementById("projects")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+      return;
+    }
+    if (["contact", "email"].includes(trimmed)) {
+      setHistory((h) => [
+        ...h,
+        {
+          cmd: trimmed,
+          output: (
+            <span>
+              Email:{" "}
+              <a href="mailto:amoghsharma@gmail.com" className="underline">
+                amoghsharma@gmail.com
+              </a>
+            </span>
+          ),
+        },
+      ]);
+      return;
+    }
+    if (["blog"].includes(trimmed)) {
+      setHistory((h) => [
+        ...h,
+        {
+          cmd: trimmed,
+          output: <span>Coming soon! Stay tuned for blog posts.</span>,
+        },
+      ]);
+      return;
+    }
+    setHistory((h) => [
+      ...h,
+      {
+        cmd: trimmed,
+        output: (
+          <span className="text-red-400">Command not found: {trimmed}</span>
+        ),
+      },
+    ]);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleCommand(input);
+    setInput("");
+    setTimeout(() => inputRef.current?.focus(), 100);
+  };
+
   return (
     <div className="bg-neutral-900/70 rounded-t-2xl px-4 pt-3 pb-4 font-mono text-xs sm:text-sm text-neutral-400">
       <div className="flex items-center mb-3">
@@ -134,12 +263,52 @@ const CodeSnippet: React.FC = () => {
         <div className="w-1.75 h-1.75 sm:w-3 sm:h-3 rounded-full bg-yellow-500 mr-2"></div>
         <div className="w-1.75 h-1.75 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
       </div>
-      <div className="h-[140px] overflow-hidden select-none">
-        <motion.div animate={controls}>
-          {lines.map((line, index) => (
-            <div key={index}>{line}</div>
-          ))}
-        </motion.div>
+      <div className="h-[140px] overflow-y-auto select-text no-scrollbar">
+        {showPrompt ? (
+          <>
+            {/* Always show welcome and recommendations */}
+            <div className="mb-2 text-neutral-400/70">
+              Welcome to <span className="text-green-300">amogh@portfolio</span>
+              !<br />
+              Try commands like:{" "}
+              <span className="text-neutral-300">projects</span>,{" "}
+              <span className="text-neutral-300">contact</span>,{" "}
+              <span className="text-neutral-300">blog</span>,{" "}
+              <span className="text-neutral-300">sudo hireme</span>,{" "}
+              <span className="text-neutral-300">cat motivation.txt</span>
+            </div>
+            {/* Only clear this part with 'clear' */}
+            {history.map((item, idx) => (
+              <div key={idx}>
+                <div>
+                  <Prompt />
+                  {item.cmd}
+                </div>
+                <div className="ml-6">{item.output}</div>
+              </div>
+            ))}
+            <form onSubmit={handleSubmit} className="flex items-center">
+              <Prompt />
+              <input
+                ref={inputRef}
+                className="bg-transparent outline-none text-white flex-1"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                autoFocus
+                spellCheck={false}
+                autoComplete="off"
+                aria-label="Terminal command input"
+              />
+              <BlinkingCursor />
+            </form>
+          </>
+        ) : (
+          <motion.div animate={controls}>
+            {lines.map((line, index) => (
+              <div key={index}>{line}</div>
+            ))}
+          </motion.div>
+        )}
       </div>
     </div>
   );
