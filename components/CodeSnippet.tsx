@@ -299,7 +299,7 @@ const CodeSnippet: React.FC = () => {
                 autoComplete="off"
                 aria-label="Terminal command input"
               />
-              <BlinkingCursor />
+              {/* <BlinkingCursor /> */}
             </form>
           </>
         ) : (

@@ -34,17 +34,20 @@ const TopNav: React.FC = () => {
   }, []);
 
   return (
-    <nav className="flex items-center justify-between">
-      <div className="font-bold text-lg tracking-wider text-white">AMOGH</div>
+    <nav className="sticky top-0 z-50 flex items-center justify-between px-4 py-2   border-neutral-800">
+      <span className="font-bold text-lg tracking-wider text-white">AMOGH</span>
       <div className="flex items-center gap-4 text-sm text-neutral-400">
-        <a href="#" className="hover:text-white transition-colors">
-          blog
+        <a href="#about" className="hover:text-white transition-colors">
+          About
         </a>
         <a href="#projects" className="hover:text-white transition-colors">
-          projects
+          Projects
         </a>
-        <a href="#visitors" className="hover:text-white transition-colors">
-          visitors
+        <a href="#skills" className="hover:text-white transition-colors">
+          Skills
+        </a>
+        <a href="#contact" className="hover:text-white transition-colors">
+          Contact
         </a>
       </div>
     </nav>

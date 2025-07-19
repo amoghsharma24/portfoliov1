@@ -23,26 +23,131 @@ export const SKILLS = [
 ];
 
 export const PROJECTS = [
-    {
-        title: "Portfolio Website",
-        description: "This personal portfolio, built with React and Tailwind CSS.",
-        repoUrl: "https://github.com/duy-le/portfolio",
-    },
-    {
-        title: "E-commerce UI Kit",
-        description: "A component library for building modern e-commerce sites.",
-        repoUrl: "https://github.com/duy-le/ecommerce-kit",
-    },
-    {
-        title: "Task Management App",
-        description: "A collaborative tool to organize and track team projects.",
-        repoUrl: "https://github.com/duy-le/tasks",
-    },
-    {
-        title: "Weather Dashboard",
-        description: "A simple and clean interface to check global weather forecasts.",
-        repoUrl: "https://github.com/duy-le/weather-app",
+  {
+    title: "StudySync",
+    description: "AI-powered learning platform for collaborative study sessions and smart flashcards.",
+    overview: "Developed an AI-powered learning platform with study groups, goal-driven sessions, and smart flashcards using NLP for content generation, enabling structured, goal-oriented learning with real-time analytics.",
+    techStack: ["Next.js", "React", "Supabase", "WebSockets", "Recharts", "NLP"],
+    demoUrl: "",
+    repoUrl: "",
+    image: "/studysync-preview.jpg",
+    caseStudy: {
+      problem: "Students need a platform to enhance collaborative study sessions and personalize learning experiences.",
+      solution: "Built StudySync with AI-driven content generation, real-time collaboration, and intelligent study planning using Next.js and Supabase.",
+      challenges: [
+        "Real-time WebSocket integration",
+        "AI content generation",
+        "Complex state management",
+        "Performance optimization"
+      ],
+      learnings: [
+        "WebSocket architecture",
+        "AI/ML integration",
+        "Real-time collaboration",
+        "Full-stack development"
+      ]
     }
+  },
+  {
+    title: "PosturePaws",
+    description: "ML-powered posture tracker with gamified feedback using computer vision.",
+    overview: "Built an ML-powered posture tracker that alerts users when slouching by integrating a MoveNet model to detect body keypoints for real-time posture detection. Developed a React UI with an animated pet widget using p5.js to provide fun, engaging feedback.",
+    techStack: ["MoveNet", "ml5.js", "React.js", "p5.js", "Computer Vision"],
+    demoUrl: "",
+    repoUrl: "",
+    image: "/posturepaws-preview.jpg",
+    caseStudy: {
+      problem: "Remote workers and students need a way to maintain good posture while working long hours at screens.",
+      solution: "Developed PosturePaws using MoveNet ML model for real-time posture detection with gamified feedback through an animated pet widget.",
+      challenges: [
+        "ML model integration",
+        "Real-time performance",
+        "Cross-browser compatibility",
+        "User engagement"
+      ],
+      learnings: [
+        "Computer vision",
+        "ML model deployment",
+        "Real-time processing",
+        "Gamification design"
+      ]
+    }
+  },
+  {
+    title: "Minecraft Maze Solver",
+    description: "Procedural maze generation and solving algorithm integrated with Minecraft API.",
+    overview: "Developed a maze generation algorithm using depth-first search (DFS) to create procedurally generated mazes in Minecraft, leveraging pointer-based memory management for efficiency. Integrated Minecraft’s height map API to adjust maze complexity based on terrain and validated solutions.",
+    techStack: ["C++", "Git", "Minecraft API", "DFS Algorithm"],
+    demoUrl: "",
+    repoUrl: "",
+    image: "/minecraft-maze-preview.jpg",
+    caseStudy: {
+      problem: "Create an engaging way to demonstrate algorithmic concepts through interactive gameplay in Minecraft.",
+      solution: "Developed a maze generation algorithm using DFS and integrated it with Minecraft's API for procedural maze creation.",
+      challenges: [
+        "Memory management",
+        "API integration",
+        "Algorithm optimization",
+        "Game mechanics"
+      ],
+      learnings: [
+        "C++ programming",
+        "Algorithm design",
+        "API development",
+        "Game integration"
+      ]
+    }
+  },
+  {
+    title: "WildWatch",
+    description: "Wildlife tracking and analytics platform with interactive data visualization.",
+    overview: "Designed and implemented a normalised SQL schema to manage wildlife data, improving database performance by 30%. Built interactive Google Charts to visualise data and provide real-time analytics, aiding wildlife tracking and detecting risk areas 50% faster.",
+    techStack: ["HTML", "CSS", "SQL", "Google Charts", "Java", "JavaScript"],
+    demoUrl: "",
+    repoUrl: "",
+    image: "/wildwatch-preview.jpg",
+    caseStudy: {
+      problem: "Wildlife conservationists need an efficient system to track wildlife data and identify risk areas quickly.",
+      solution: "Built WildWatch with normalized SQL schema and interactive Google Charts for real-time wildlife analytics and risk detection.",
+      challenges: [
+        "Database optimization",
+        "Data visualization",
+        "Performance improvement",
+        "User interface design"
+      ],
+      learnings: [
+        "Database design",
+        "Data visualization",
+        "Performance optimization",
+        "Full-stack development"
+      ]
+    }
+  },
+  {
+    title: "Fruitful",
+    description: "Productivity app for students with data-driven dashboards and goal tracking.",
+    overview: "Built data-driven dashboards to help students manage schedules, track goals, and improve academic routines using SwiftUI’s data flow properties (ObservableObject, @State, @Binding).",
+    techStack: ["SwiftUI", "Swift", "Xcode"],
+    demoUrl: "",
+    repoUrl: "",
+    image: "/fruitful-preview.jpg",
+    caseStudy: {
+      problem: "Students struggle to maintain productivity and balance academic goals effectively.",
+      solution: "Created Fruitful, a SwiftUI app with data-driven dashboards and gamification to help students track and balance academic goals.",
+      challenges: [
+        "iOS development",
+        "Data flow management",
+        "User experience design",
+        "App Store deployment"
+      ],
+      learnings: [
+        "SwiftUI development",
+        "iOS app lifecycle",
+        "Data binding",
+        "App Store publishing"
+      ]
+    }
+  }
 ];
 
 export const VISITORS = [
