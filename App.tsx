@@ -6,6 +6,7 @@ import Visitors from "./components/Visitors";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import BackgroundEffects from "./components/ui/spotlight-new";
+import Roadmap from "./components/Roadmap";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         <Skills />
         <Projects />
         <Visitors />
+        <Roadmap />
       </main>
     </div>
   );
