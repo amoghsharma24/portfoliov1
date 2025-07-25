@@ -1,12 +1,12 @@
 import React from "react";
 import TopNav from "./components/TopNav";
 import Hero from "./components/Hero";
-import Projects from "./components/Projects";
-import Visitors from "./components/Visitors";
+import CodeSnippet from "./components/CodeSnippet";
 import About from "./components/About";
 import Skills from "./components/Skills";
-import BackgroundEffects from "./components/ui/spotlight-new";
+import Projects from "./components/Projects";
 import Roadmap from "./components/Roadmap";
+import BackgroundEffects from "./components/ui/spotlight-new";
 
 const App: React.FC = () => {
   return (
@@ -15,11 +15,12 @@ const App: React.FC = () => {
       <TopNav />
       <main className="mt-8">
         <Hero />
+        <CodeSnippet />
         <About />
         <Skills />
         <Projects />
-        <Visitors />
         <Roadmap />
+        {/* <Contact /> */}
       </main>
     </div>
   );
